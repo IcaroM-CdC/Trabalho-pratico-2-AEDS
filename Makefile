@@ -1,5 +1,5 @@
-compile: main.c functions/functions.c
-	 gcc main.c functions/functions.c -o main -lm
+compile: main.c FNC_3_SAT/FNC_3_SAT.c
+	 gcc main.c FNC_3_SAT/FNC_3_SAT.c -o main -lm
 
 run:
 	./main
