@@ -1,5 +1,5 @@
-compile: main.c 3-SAT/3-SAT.c
-	 gcc main.c 3-SAT/3-SAT.c -o main -lm
+compile: main.c functions/functions.c
+	 gcc main.c functions/functions.c -o main -lm
 
 run:
 	./main
