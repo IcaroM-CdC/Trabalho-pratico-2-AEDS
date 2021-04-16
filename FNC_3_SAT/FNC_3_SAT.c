@@ -33,6 +33,32 @@ clause *read_clauses(int num_clauses, int num_variables){
 
 }
 
+clause *read_clauses_automatic(int num_clauses, int num_literals, int **matrix){
+
+    clause *clauses = (clause*) malloc(num_clauses * sizeof(clause));
+
+    // LÊ CADA CLAUSULA
+    for (int index1 = 0; index1 < num_clauses; index1++){
+
+        // LE CADA ELEMENTO DA CLAUSULA
+        for (int index2 = 0; index2 < num_literals; index2++){
+
+            //printf("%d" ,matrix[index1][index2]);
+
+            if (matrix[index1][index2] != 0){
+
+                clauses[index1].tuples[index2].num_literal = index2;
+                clauses[index1].tuples[index2].state = matrix[index1][index2];
+
+            }
+
+        }
+    }
+
+    return clauses; //RETORNA VETOR DE CLAUSULAS
+
+}
+
 // ------ FUNCAO QUE GERA AS COMBINACOES TABELA VERDADE
 int **generate_table(int num_variables, int verbose){
 
@@ -44,12 +70,11 @@ int **generate_table(int num_variables, int verbose){
 
     matrix = (int**) malloc(COLUMNS * sizeof(int*));
 
-    for (int i = 0; i < LINES; i++){
+    for (int i = 0; i < COLUMNS; i++){
 
         matrix[i] = (int*) malloc(LINES * sizeof(int));
 
     }
-
 // -------------------------------------------------------------
 
     for (int index = 0; index < num_variables; index++){
@@ -249,7 +274,6 @@ int interactive(){
 
 }
 
-
 int automatic(){
     
     int num_literals;
@@ -257,7 +281,10 @@ int automatic(){
     int **matrix;
     int **truth_table;
 
-    printf("Insira o numero de literais:");
+    clause *clauses;
+
+
+    printf("Insira o numero de literais: ");
     scanf("%d", &num_literals);
 
     num_clauses = (num_literals / 3) * 2;
@@ -315,16 +342,19 @@ int automatic(){
         }
     }
     
-    for (int index1 = 0; index1 < num_clauses; index1++){
-        for (int index2 = 0; index2 < num_literals; index2++){
-            printf("%d" ,matrix[index1][index2]);
-        }
-        printf("\n");
-    }
-
+    // for (int index1 = 0; index1 < num_clauses; index1++){
+    //     for (int index2 = 0; index2 < num_literals; index2++){
+    //         printf("%d" ,matrix[index1][index2]);
+    //     }
+    //     printf("\n");
+    // }
+    // printf("\n");
+    puts("passou1");
     truth_table = generate_table(num_literals, 0);
-
-    printf("%d\n", num_clauses);
+    puts("passou2");
+    clauses = read_clauses_automatic(num_clauses, num_literals, matrix);
+    puts("passou3");
+    calculate_trues(clauses, truth_table, num_clauses, num_literals);
 
     return 1;
 
