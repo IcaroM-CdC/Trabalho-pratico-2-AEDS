@@ -5,7 +5,7 @@
 #include "FNC_3_SAT.h"
 
 
-// ------ FUNCAO QUE LE AS CLAUSULAS
+
 clause *read_clauses(int num_clauses, int num_variables){
 
     clause *clauses = (clause*) malloc(num_clauses * sizeof(clause));
@@ -60,7 +60,7 @@ clause *read_clauses_automatic(int num_clauses, int num_literals, int **matrix){
 
 }
 
-// ------ FUNCAO QUE GERA AS COMBINACOES TABELA VERDADE
+
 int **generate_table(int num_variables, int verbose){
 
     // ------------ ALOCAÇÃO DA MATRIZ ------------
@@ -156,7 +156,6 @@ int **generate_table(int num_variables, int verbose){
     return matrix;
 }
 
-// ------ FUNCAO QUE CALCULA OS CONJUNTOS QUE TORNAM A EQUACAO VERDADEIRA, E PRINTA
 int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_variables){
     
     int print_label = 1;
@@ -348,7 +347,7 @@ int automatic(){
     truth_table = generate_table(num_literals, 0);
 
     clauses = read_clauses_automatic(num_clauses, num_literals, matrix);
-    
+
     calculate_trues(clauses, truth_table, num_clauses, num_literals);
 
     return 1;
