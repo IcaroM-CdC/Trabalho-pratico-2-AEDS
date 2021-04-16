@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 #include "FNC_3_SAT.h"
 
-// ------ FUNCAO QUE LE AS CLAUSULAS
 
+// ------ FUNCAO QUE LE AS CLAUSULAS
 clause *read_clauses(int num_clauses, int num_variables){
 
     clause *clauses = (clause*) malloc(num_clauses * sizeof(clause));
@@ -13,26 +14,24 @@ clause *read_clauses(int num_clauses, int num_variables){
     for (int i = 0; i < num_clauses; i++){
 
         // LE CADA ELEMENTO DA CLAUSULA
-        printf("\n*--INICIO DA CLAUSULA %d--*\n", i+1);
+        printf("::::::::::::::::: CLAUSULA %d :::::::::::::::::\n", i + 1);
 
         for (int j = 0; j < CONST_ELEMENTS_CLAUSE; j++){
 
-            printf("Digite a variavel (de 0 a %d): ", num_variables - 1);
+            printf("Digite o literal (de 0 a %d): ", num_variables - 1);
 
             scanf("%d", &clauses[i].tuples[j].num_literal);
 
-            printf("Digite o estado (1 = negativo | 2 = positivo): ");
+            printf("Digite o estado (1 = negado | 2 = normal): ");
 
             scanf("%d", &clauses[i].tuples[j].state);
         }
         
-        printf("*--FIM DA CLAUSULA %d--*\n", i+1);
     }
 
     return clauses; //RETORNA VETOR DE CLAUSULAS
 
 }
-
 
 // ------ FUNCAO QUE GERA AS COMBINACOES TABELA VERDADE
 int **generate_table(int num_variables, int verbose){
@@ -117,7 +116,6 @@ int **generate_table(int num_variables, int verbose){
     if (verbose == 1) {
 
         for (int index2 = 0; index2 < LINES; index2++){ // COLUNAS
-
             for (int index = 0; index < COLUMNS; index++){ // LINHAS
 
                 printf("  %d  |", matrix[index][index2]);
@@ -136,16 +134,16 @@ int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_vari
     
     int print_label = 1;
 
-    for (int i=1; i<pow(2,num_variables)+1; i++){ //PARA CADA LINHA
+    for (int i = 1; i < pow(2, num_variables) + 1; i++){ //PARA CADA LINHA
 
         //VER SE TODAS AS CLAUSULAS SAO VERDADEIRAS
         int aux = 0;
         
-        for(int j = 0; j < num_clauses; j++){
+        for (int j = 0; j < num_clauses; j++){
 
             int clause_value = 0;
 
-            for(int k = 0; k < CONST_ELEMENTS_CLAUSE; k++){
+            for (int k = 0; k < CONST_ELEMENTS_CLAUSE; k++){
 
                 if (clauses[j].tuples[k].state == 1){
 
@@ -186,7 +184,7 @@ int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_vari
 
                 }
 
-                printf("\n");
+                printf("\n\n");
 
             }
 
@@ -194,7 +192,18 @@ int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_vari
 
             for (int p = 0; p < num_variables; p++){
 
-                printf(" %d ", matrix[p][i]);
+                if (matrix[p][i] == 1){
+
+                    printf(" V ");
+
+
+                }
+
+                else {
+
+                    printf(" F ");
+
+                }
 
             }
 
@@ -240,8 +249,82 @@ int interactive(){
 
 }
 
+
 int automatic(){
     
+    int num_literals;
+    int num_clauses;
+    int **matrix;
+    int **truth_table;
+
+    printf("Insira o numero de literais:");
+    scanf("%d", &num_literals);
+
+    num_clauses = (num_literals / 3) * 2;
+
+    // ------------------ ALOCAÇÃO DA MATRIZ -----------------------
+
+    matrix = (int**) malloc(sizeof(int*) * num_clauses);
+
+    for (int index = 0; index < num_clauses; index++){
+
+        matrix[index] = (int*) malloc(sizeof(int) * num_literals);
+
+    }
+
+    // ------------------------------------------------------------
+
+    for (int index1 = 0; index1 < num_clauses; index1++){
+        for (int index2 = 0; index2 < num_literals; index2++){
+
+            matrix[index1][index2] = 0;
+
+        }
+    }
+    
+
+    /* 
+        srand(time(NULL)) objetiva inicializar o gerador de números aleatórios
+        com o valor da função time(NULL). Este por sua vez, é calculado
+        como sendo o total de segundos passados desde 1 de janeiro de 1970
+        até a data atual.
+        Desta forma, a cada execução o valor da "semente" será diferente.
+    */
+  
+    srand(time(NULL));
+
+    int random;    
+
+    for (int index1 = 0; index1 < num_clauses; index1++){
+        
+        for (int index2 = 0; index2 < 3; index2++){
+
+            random = rand() % (num_literals - 1);
+
+            while (matrix[index1][random] != 0){
+
+                random = rand() % (num_literals - 1);
+
+            }
+
+            if (matrix[index1][random] == 0){
+
+                matrix[index1][random] = 1 + rand() % 2;
+
+            }
+        }
+    }
+    
+    for (int index1 = 0; index1 < num_clauses; index1++){
+        for (int index2 = 0; index2 < num_literals; index2++){
+            printf("%d" ,matrix[index1][index2]);
+        }
+        printf("\n");
+    }
+
+    truth_table = generate_table(num_literals, 0);
+
+    printf("%d\n", num_clauses);
 
     return 1;
 

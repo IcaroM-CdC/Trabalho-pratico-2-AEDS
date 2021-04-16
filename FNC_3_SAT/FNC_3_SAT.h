@@ -6,7 +6,6 @@
 typedef struct element_tuple element;
 typedef struct clause_tuple clause;
 
-// ------ STRUCT DE UM ELEMENTO DA TUPLA
 struct element_tuple {
 
       int num_literal;
@@ -14,20 +13,19 @@ struct element_tuple {
 
 };
 
-// ------ STRUCT DE UMA TUPLA DE ELEMENTOS
-
 struct clause_tuple{
 
       element tuples[3];
       
 };
 
+clause *read_clauses(int num_clauses, int num_variables);
+
 int **generate_table(int num_variables, int printar);
 int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_variables);
 int interactive();
 int automatic();
 
-clause *read_clauses(int num_clauses, int num_variables);
 
 
 #endif
