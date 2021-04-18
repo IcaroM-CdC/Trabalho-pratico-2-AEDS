@@ -61,111 +61,19 @@ clause *read_clauses_automatic(int num_clauses, int num_literals, int **matrix){
 }
 
 
-int **generate_table(int num_variables, int verbose){
-
-    // ------------ ALOCAÇÃO DA MATRIZ ------------
-
-    int **matrix;
-
-    int COLUMNS = num_variables;
-    int LINES = pow(2, num_variables) + 1;
-
-    matrix = (int**) malloc(COLUMNS * sizeof(int*));
-
-    for (int i = 0; i < COLUMNS; i++){
-
-        matrix[i] = (int*) malloc(LINES * sizeof(int));
-
-    }
-    // --------------------------------------------
-
-    for (int index = 0; index < num_variables; index++){
-
-        // Preenchendo a primeira linha de cada coluna com o valor da literal da tabela verdade
-        matrix[index][0] = index + 1;
-    }
-    
-    /* 
-        A matriz é percorrida no sentido coluna linha
-    */
-
-    int aux_var_number = num_variables;
-    int divisor = 2;
-   
-    for (int index = 0; index < COLUMNS; index++){ // COLUNAS
-
-        int fill_with_zero = 1;
-        int counter = 1;
-
-        // Inicia a partir da LINHA 1, pois a primeira contem os indices
-        for (int index2 = 1; index2 < LINES; index2++){ // LINHAS
-
-            if (counter <= pow(2, aux_var_number - 1)){
-
-                if (fill_with_zero == 1){
-
-                    matrix[index][index2] = 0;
-
-                }
-                
-                if (fill_with_zero == 0){
-
-                    matrix[index][index2] = 1;
-
-                }
-
-                if (counter == pow(2, aux_var_number - 1)){
-
-                    counter = 0;
-
-                    if (fill_with_zero == 1){
-
-                        fill_with_zero = 0;
-
-                    }
-
-                    else if (fill_with_zero == 0){
-
-                        fill_with_zero = 1;
-
-                    }
-                }
-            }
-
-            counter++;
-        }
-
-        aux_var_number--;
-    }
-     
-    // PARA verbose = 1, ESCREVE AS OPÇOES
-
-    if (verbose == 1) {
-
-        for (int index2 = 0; index2 < LINES; index2++){ // COLUNAS
-            for (int index = 0; index < COLUMNS; index++){ // LINHAS
-
-                printf("  %d  |", matrix[index][index2]);
-            
-            }
-
-            printf("\n");
-        }
-    }
-
-    return matrix;
-}
-
-
-
 int calculate_trues(clause *clauses, int num_clauses, int num_variables){
-    puts("entrou\n");
-    int *line_result = (int*) malloc(sizeof(int) * num_variables);
+    
+    puts("PASSOU\n");
+
     int print_label = 1;
     long long int LINES = pow(2, num_variables);
     long long int result;
 
-    puts("entrou\n");
+    //int *line_result = (int*) malloc(sizeof(int) * num_variables);
+    int line_result[100];
+
+    puts("PASSOU\n");
+
     for (long long int index1 = 0; index1 < LINES; index1++){
         for (int index2 = num_variables - 1; index2 >= 0; index2--){
 

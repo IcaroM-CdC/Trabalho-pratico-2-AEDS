@@ -22,7 +22,6 @@ struct clause_tuple{
 clause *read_clauses(int num_clauses, int num_variables);
 clause *read_clauses_automatic(int num_clauses, int num_literals, int **matrix);
 
-int **generate_table(int num_variables, int printar);
 
 int calculate_trues(clause *clauses, int num_clauses, int num_variables);
 int interactive();
