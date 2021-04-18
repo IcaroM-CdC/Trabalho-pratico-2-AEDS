@@ -24,7 +24,7 @@ clause *read_clauses_automatic(int num_clauses, int num_literals, int **matrix);
 
 int **generate_table(int num_variables, int printar);
 
-int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_variables);
+int calculate_trues(clause *clauses, int num_clauses, int num_variables);
 int interactive();
 int automatic(int num_literals);
 

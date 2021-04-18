@@ -84,14 +84,14 @@ int **generate_table(int num_variables, int verbose){
         // Preenchendo a primeira linha de cada coluna com o valor da literal da tabela verdade
         matrix[index][0] = index + 1;
     }
-
+    
     /* 
         A matriz é percorrida no sentido coluna linha
     */
 
     int aux_var_number = num_variables;
     int divisor = 2;
-
+   
     for (int index = 0; index < COLUMNS; index++){ // COLUNAS
 
         int fill_with_zero = 1;
@@ -156,13 +156,24 @@ int **generate_table(int num_variables, int verbose){
     return matrix;
 }
 
-int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_variables){
-    
+
+
+int calculate_trues(clause *clauses, int num_clauses, int num_variables){
+    puts("entrou\n");
+    int *line_result = (int*) malloc(sizeof(int) * num_variables);
     int print_label = 1;
+    long long int LINES = pow(2, num_variables);
+    long long int result;
 
-    for (int i = 1; i < pow(2, num_variables) + 1; i++){ //PARA CADA LINHA
+    puts("entrou\n");
+    for (long long int index1 = 0; index1 < LINES; index1++){
+        for (int index2 = num_variables - 1; index2 >= 0; index2--){
 
-        //VER SE TODAS AS CLAUSULAS SAO VERDADEIRAS
+            result = index1 / pow(2, index2);
+            line_result[index2] = result % 2;
+
+        }
+
         int aux = 0;
         
         for (int j = 0; j < num_clauses; j++){
@@ -173,13 +184,13 @@ int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_vari
 
                 if (clauses[j].tuples[k].state == 1){
 
-                    clause_value = clause_value || !matrix[clauses[j].tuples[k].num_literal][i];
+                    clause_value = clause_value || !line_result[clauses[j].tuples[k].num_literal];
                     
                 }
                 
                 else {
 
-                    clause_value = clause_value || matrix[clauses[j].tuples[k].num_literal][i];
+                    clause_value = clause_value || line_result[clauses[j].tuples[k].num_literal];
                     
                 }
             }
@@ -218,7 +229,7 @@ int calculate_trues(clause *clauses, int **matrix, int num_clauses, int num_vari
 
             for (int p = 0; p < num_variables; p++){
 
-                if (matrix[p][i] == 1){
+                if (line_result[p] == 1){
 
                     printf(" V ");
 
@@ -263,13 +274,13 @@ int interactive(){
     scanf("%d", &num_variable);
 
     //------------------------MONTA TABELA
-    int **matrix = generate_table(num_variable, 0);
+    //int **matrix = generate_table(num_variable, 0);
     
     //---------------------LER CLAUSULAS-------------------------
     clauses = read_clauses(num_clauses, num_variable);
 
     //---------------------CALCULA AS QUE TORNAM VERDADEIRAS E PRINTA
-    calculate_trues(clauses, matrix, num_clauses, num_variable);
+    calculate_trues(clauses, num_clauses, num_variable);
 
     return 1;
 
@@ -297,7 +308,7 @@ int automatic(int num_literals){
     }
 
     // ------------------------------------------------------------
-
+    
     for (int index1 = 0; index1 < num_clauses; index1++){
         for (int index2 = 0; index2 < num_literals; index2++){
 
@@ -338,13 +349,10 @@ int automatic(int num_literals){
             }
         }
     }
-    
-
-    truth_table = generate_table(num_literals, 0);
 
     clauses = read_clauses_automatic(num_clauses, num_literals, matrix);
 
-    calculate_trues(clauses, truth_table, num_clauses, num_literals);
+    calculate_trues(clauses, num_clauses, num_literals);
 
     return 1;
 
