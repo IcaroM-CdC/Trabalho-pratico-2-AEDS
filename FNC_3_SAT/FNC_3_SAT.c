@@ -63,7 +63,7 @@ clause *read_clauses_automatic(int num_clauses, int num_literals, int **matrix){
 
 int calculate_trues(clause *clauses, int num_clauses, int num_variables){
     
-    puts("PASSOU\n");
+    
 
     int print_label = 1;
     long long int LINES = pow(2, num_variables);
@@ -72,7 +72,7 @@ int calculate_trues(clause *clauses, int num_clauses, int num_variables){
     //int *line_result = (int*) malloc(sizeof(int) * num_variables);
     int line_result[100];
 
-    puts("PASSOU\n");
+    
 
     for (long long int index1 = 0; index1 < LINES; index1++){
         for (int index2 = num_variables - 1; index2 >= 0; index2--){

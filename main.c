@@ -50,24 +50,23 @@ int main(void){
         printf("Insira o numero de literais: ");
         scanf("%d", &num_literals);
 
-        begin = clock();
-
+        begin = time(NULL);
         automatic(num_literals);
 
-        end = clock();
+        end = time(NULL);
     }
 
     if (menu_opcao == 2){
 
-        begin = clock();
+        begin = time(NULL);
 
         interactive();
 
-        end = clock();
+        end = time(NULL);
     }
 
 
-    double time_spent = (double)(end - begin) / (CLOCKS_PER_SEC);
+    double time_spent = difftime(end, begin);
 
     printf("Tempo gasto na execução %.2lf segundos\n", time_spent);
 }
