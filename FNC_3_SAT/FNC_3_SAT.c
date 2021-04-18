@@ -6,7 +6,7 @@
 
 
 
-clause *read_clauses(int num_clauses, int num_variables){
+clause *read_clauses(int num_clauses, int num_literals){
 
     clause *clauses = (clause*) malloc(num_clauses * sizeof(clause));
 
@@ -18,7 +18,7 @@ clause *read_clauses(int num_clauses, int num_variables){
 
         for (int j = 0; j < CONST_ELEMENTS_CLAUSE; j++){
 
-            printf("Digite o literal (de 0 a %d): ", num_variables - 1);
+            printf("Digite o literal (de 0 a %d): ", num_literals - 1);
 
             scanf("%d", &clauses[i].tuples[j].num_literal);
 
@@ -61,21 +61,21 @@ clause *read_clauses_automatic(int num_clauses, int num_literals, int **matrix){
 }
 
 
-int calculate_trues(clause *clauses, int num_clauses, int num_variables){
+int calculate_trues(clause *clauses, int num_clauses, int num_literals){
     
     
 
     int print_label = 1;
-    long long int LINES = pow(2, num_variables);
+    long long int LINES = pow(2, num_literals);
     long long int result;
 
-    //int *line_result = (int*) malloc(sizeof(int) * num_variables);
+    //int *line_result = (int*) malloc(sizeof(int) * num_literals);
     int line_result[100];
 
     
 
     for (long long int index1 = 0; index1 < LINES; index1++){
-        for (int index2 = num_variables - 1; index2 >= 0; index2--){
+        for (int index2 = num_literals - 1; index2 >= 0; index2--){
 
             result = index1 / pow(2, index2);
             line_result[index2] = result % 2;
@@ -123,7 +123,7 @@ int calculate_trues(clause *clauses, int num_clauses, int num_variables){
 
                 printf("\n\nAs combinacoes que tornam a equacao verdadeira sao: \n\n");
 
-                for (int i = 0; i < num_variables; i++){
+                for (int i = 0; i < num_literals; i++){
 
                     printf(" %c ", i + 65);
 
@@ -135,7 +135,7 @@ int calculate_trues(clause *clauses, int num_clauses, int num_variables){
 
             print_label = 0;
 
-            for (int p = 0; p < num_variables; p++){
+            for (int p = 0; p < num_literals; p++){
 
                 if (line_result[p] == 1){
 

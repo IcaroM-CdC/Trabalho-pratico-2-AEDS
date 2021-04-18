@@ -19,11 +19,11 @@ struct clause_tuple{
       
 };
 
-clause *read_clauses(int num_clauses, int num_variables);
+clause *read_clauses(int num_clauses, int num_literals);
 clause *read_clauses_automatic(int num_clauses, int num_literals, int **matrix);
 
 
-int calculate_trues(clause *clauses, int num_clauses, int num_variables);
+int calculate_trues(clause *clauses, int num_clauses, int num_literals);
 int interactive();
 int automatic(int num_literals);
 
