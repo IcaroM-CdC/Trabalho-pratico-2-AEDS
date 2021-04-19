@@ -6,7 +6,7 @@
 
 ## 🧪 Resultados 
 
-* O algoritmo foi rodado no modo automático para as seguintes entradas: 15, 20, 30, 45 literais
+- O algoritmo foi rodado no modo automático para as seguintes entradas: 15, 20, 30, 45 literais
 
 	> Entrada N = 15 - Tempo: 0s
 	> Entrada N = 20 - Tempo: 7s
