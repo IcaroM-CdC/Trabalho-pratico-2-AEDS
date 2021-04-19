@@ -1,10 +1,10 @@
-# 💻 Algoritmo FNC-3-SAT 💻
+# 💻 Algoritmo FNC-3-SAT 
 
 - O objetivo desse trabalho prático é a implementação para o “Problema da Satisfatividade (SAT)”. Mais especificamente, trataremos do problema conhecido por FNC-3-SAT, que é uma versão de SAT. Esse é um problema intratável, pois sua solução exata somente é possível através do cálculo e avaliação de todas as possíveis saídas, o que chamamos de força bruta.
 
 - O objetivo é encontrar uma configuração de valores lógicos para as variáveis envolvidas na equação de entrada, tal que a mesma seja avaliada como verdadeira, isto é, que ela seja satisfeita.
 
-## 🧪 Resultados 🧪
+## 🧪 Resultados 
 
 * O algoritmo foi rodado no modo automático para as seguintes entradas: 15, 20, 30, 45 literais
 
@@ -24,7 +24,7 @@
   ![grafico](https://github.com/IcaroM-CdC/Trabalho-pratico-2-AEDS/blob/main/imagens/Grafico%20desempenho.png)
 
 
-## 🚀  Executando 🚀 
+## 🚀  Executando 
 
 - Clone o repositorio
 
