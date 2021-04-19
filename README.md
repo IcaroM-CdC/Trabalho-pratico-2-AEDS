@@ -34,9 +34,9 @@
 
 - Siga os passos abaixo
 	```bash
-	# Install the dependencies
-	$ yarn
+	# Compilando o algoritmo
+	$ make compile
 
-	# Start the project
-	$ yarn dev
+	# Iniciando o algoritmo
+	$ make run
 	```
