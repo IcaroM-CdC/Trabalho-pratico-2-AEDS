@@ -20,3 +20,6 @@
     processamento do algoritmo à medida que a entrada aumenta, tendo
     um comportamento assintótico O(n2).
 
+
+
+![grafico](https://github.com/IcaroM-CdC/Trabalho-pratico-2-AEDS/blob/main/imagens/Grafico%20desempenho.png)
