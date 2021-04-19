@@ -22,4 +22,8 @@
 
 
 
-![grafico](https://github.com/IcaroM-CdC/Trabalho-pratico-2-AEDS/blob/main/imagens/Grafico%20desempenho.png)
+
+
+
+
+  ![grafico](https://github.com/IcaroM-CdC/Trabalho-pratico-2-AEDS/blob/main/imagens/Grafico%20desempenho.png)
