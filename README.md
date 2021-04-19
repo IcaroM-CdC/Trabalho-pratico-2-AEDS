@@ -4,6 +4,9 @@
 
 - O objetivo é encontrar uma configuração de valores lógicos para as variáveis envolvidas na equação de entrada, tal que a mesma seja avaliada como verdadeira, isto é, que ela seja satisfeita.
 
+- Como se trata de um algoritmo de elevado custo computacional, a configuração do computador de testes é levada em conta, no caso a configuração foi: 
+
+
 ## 🧪 Resultados 
 
 - O algoritmo foi rodado no modo automático para as seguintes entradas: 15, 20, 30, 45 literais
