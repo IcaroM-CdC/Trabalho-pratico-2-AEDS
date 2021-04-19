@@ -9,9 +9,9 @@
 * O algoritmo foi rodado no modo automático para as seguintes entradas: 15, 20, 30, 45 literais
 
 	> Entrada N = 15 - Tempo: 0s
-	> Entrada N = 20 - Tempo: 7s
-	> Entrada N = 30 - Tempo: 10800s
-	> Entrada N = 45 - Tempo: 61200s
+	  Entrada N = 20 - Tempo: 7s
+	  Entrada N = 30 - Tempo: 10800s
+	  Entrada N = 45 - Tempo: 61200s
 
 - No gráfico abaixo é nítido o aumento exponencial do tempo de
     processamento do algoritmo à medida que a entrada aumenta, tendo
