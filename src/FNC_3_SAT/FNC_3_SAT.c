@@ -88,7 +88,7 @@ int calculate_trues(clause *clauses, int num_clauses, int num_literals){
     
 
     for (long long int index1 = 0; index1 < LINES; index1++){
-        for (int index2 = num_literals - 1; index2 >= 0; index2--){
+        for (int index2 = num_literals - 1; index2 > 0; index2--){
 
             result = index1 / pow(2, index2);
             line_result[index2] = result % 2;
